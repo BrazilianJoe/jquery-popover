@@ -240,10 +240,10 @@
 		}
 	
 		// build HTML popover
-		settings.popover$ = $('<div class="popover" id="' + settings.id + '">'
+		settings.popover$ = $('<div class="ui-helper-hidden ui-helper-zfix ui-widget ui-widget-content ui-corner-all popover" id="' + settings.id + '">'
 					+ '<div class="triangle"></div>'
-					+ '<div class="header"></div>'
-					+ '<div class="content"></div>'
+					+ '<div class="ui-widget-header ui-state-default ui-corner-top header"></div>'
+					+ '<div class="ui-widget-content ui-corner-bottom content"></div>'
 					+ '</div>').appendTo('body');
 		$('.header', settings.popover$).append($(settings.header).detach());
 		$('.content', settings.popover$).append($(settings.content).detach());
