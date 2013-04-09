@@ -18,7 +18,7 @@
 			preventRight: false,	// pass true to prevent right popover
 			preventTop: false,		// pass true to prevent top popover
 			preventBottom: false, // pass true to prevent bottom popover
-			live: false						// popover created on live selector
+			live: false						// popover created on live selector. As of jQuery 1.9, this should be used as follows $(document).popover({live: '.my-selector'}).
 		}, options || {});
 		
 		// functions to claculate popover direction and position 
@@ -284,36 +284,38 @@
 				var button = $(this);
 				button.addClass("popover-button");
 
-				button.bind('click', function() { 
+				button.on('click', function() { 
 					togglePopover(button);
 					return false;
 				});
 
-				button.bind('showPopover', function() { 
+				button.on('showPopover', function() { 
 					togglePopover(button, true);
 					return false;
 				});
 
-				button.bind('hidePopover', function() {
+				button.on('hidePopover', function() {
 					hidePopover(button);
 					return false;
 				});
 			});
 		}
-		else { // live popover		
-			this.live('click', function(event) {
+		else { // live popover
+			var sel = this.selector || settings.live;
+			var context = $(sel === settings.live && this.length ? this[0] : this.context);
+			context.on('click', sel, function(event) {
 				$(event.target).addClass("popover-button");
 				togglePopover($(event.target));
 				return false;
 			});
 
-			this.live('showPopover', function(event) { 
+			context.on('showPopover', sel, function(event) { 
 				$(event.target).addClass("popover-button");
 				togglePopover($(event.target), true);
 				return false;
 			});
 
-			this.live('hidePopover', function(event) {
+			context.on('hidePopover', sel, function(event) {
 				hidePopover($(event.target));
 				return false;
 			});
