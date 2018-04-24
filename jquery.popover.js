@@ -270,7 +270,7 @@
 		// document Esc key listener
 		var selector = this;
 		if (settings.closeOnEsc) {
-			$(document).bind('keydown', function(event) {
+			$(document).on('keydown', function(event) {
 				if (!event.altKey && !event.ctrlKey && !event.shiftKey
 							&& (event.keyCode == KEY_ESC)) {
 					selector.trigger('hidePopover');
