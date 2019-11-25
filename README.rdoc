@@ -48,17 +48,23 @@ on the screen. The popup can appear on all 4 sides of the originating element. T
 options documentation section below.
 
 As of version 0.3.0 it is also possible to create popups on yet to be created buttons by using the <tt>live</tt> option. 
-Internally this uses the jQuery <tt>live</tt> function to listen to events on buttons that match the selector used 
+Internally this uses the jQuery <tt>on</tt> function with a selector to listen to events on buttons that match the selector used 
 in the popover call, for example:
 
-    $('.button').popover({header: '#my-popover > .header', content: '#my-popover > .content', live: true});
+    $(document).popover({header: '#my-popover > .header', content: '#my-popover > .content', live: '.button'});
 
 This is useful when you wish to attach a popover to dynamic buttons that may be created later on via AJAX or other means.
-The only limitation in this case is that, similar to the jQuery <tt>live</tt> function, the popover plugin can only be used
+The only limitation in this case is that, similar to the jQuery <tt>delegate</tt> function, the popover plugin can only be used
 with selectors and not with derived wrapped sets.
 
-By default, the <tt>live</tt> option is false and the jQuery <tt>bind</tt> function will be used to attach the popover only to 
+By default, the <tt>live</tt> option is false and the jQuery <tt>on</tt> function will be used to attach the popover only to 
 existing elements that match the selector at call time.
+
+To be backwards-compatible, using
+
+    $('.button').popover({live: true})
+
+also works (albeit only in versions of jQuery where the <tt>selector</tt> property is still supported, i.e. <= 1.9).
 
 == Features & changes
 
@@ -118,7 +124,7 @@ See <tt>CHANGELOG</tt> for details
 * <tt>preventRight: false</tt> - (Boolean) - pass true to prevent popover from opening on right side
 * <tt>preventTop: false</tt> - (Boolean) - pass true to prevent popover from opening on top side
 * <tt>preventBottom: false</tt> - (Boolean) - pass true to prevent popover from opening on bottom side
-* <tt>live: false</tt> - (Boolean) - pass true to create a popover on a selector using jQuery <tt>live</tt>.
+* <tt>live: false</tt> - (Boolean) - used to create a popover on a selector using jQuery <tt>delegate</tt> mechanisms.
 See section 'How to use' above for details
 
 == Supported events

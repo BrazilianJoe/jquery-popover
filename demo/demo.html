@@ -5,7 +5,7 @@
     <title>JQuery popover demo page</title> 
     <link href="popoverDemo.css" media="screen" rel="stylesheet" type="text/css" /> 
     <link href="../jquery.popover.css" media="screen" rel="stylesheet" type="text/css" /> 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script> 
     <script src="../jquery.popover.js" type="text/javascript"></script> 
   </head> 
   <body> 
@@ -73,7 +73,9 @@
 					live: true, openEvent: function() {
 						$("<div class='test-but box' id='box2'>Live button - Click me</div>").appendTo('body');
 					}
-			});	
+			}).click(function() {
+				
+			});
     </script> 
   </body> 
   <!-- c(H§H) --> 
